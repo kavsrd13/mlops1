@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 # Load dataset (replace with your actual dataset path)
-data = pd.read_csv("your_dataset.csv")
+data = pd.read_csv('data/iris.csv')
 
 # Split the data into features (X) and target (y)
 X = data.drop(columns=["target"])
