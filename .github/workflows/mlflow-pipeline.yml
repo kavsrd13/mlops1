@@ -30,13 +30,11 @@ jobs:
       run: |
         python Scripts/train.py
 
-    - name: Commit model (Optional)
+    - name: Save model after training
       run: |
-        # If you want to save and commit your trained model
-        # For example, saving the model with joblib
-        python -c 'import joblib; model = joblib.load("your_model.pkl"); joblib.dump(model, "saved_model.pkl")'
+        python -c 'import joblib; model = joblib.load("saved_model.pkl"); joblib.dump(model, "saved_model.pkl")'
 
-    - name: Upload trained model (Optional)
+    - name: Upload trained model
       uses: actions/upload-artifact@v3
       with:
         name: trained-model
