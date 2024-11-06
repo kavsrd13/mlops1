@@ -1,10 +1,10 @@
 # scripts/train.py
 
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+import joblib  # Added for saving the model
 
 # Load dataset
 data = pd.read_csv('data/iris.csv')
@@ -23,10 +23,8 @@ y_pred = model.predict(X_val)
 accuracy = accuracy_score(y_val, y_pred)
 model_filename = 'saved_model.pkl'
 
-# Ensure the model is saved in the correct directory
-model_path = os.path.join(os.getcwd(), model_filename)  # Saves in the current directory
-
-# Save the model
-joblib.dump(model, model_path)
+# Save the model directly to the current directory
+joblib.dump(model, model_filename)
 
 print("Training complete. Accuracy:", accuracy)
+print(f"Model saved as {model_filename}")
