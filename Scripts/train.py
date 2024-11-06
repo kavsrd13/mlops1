@@ -23,6 +23,10 @@ y_pred = model.predict(X_val)
 accuracy = accuracy_score(y_val, y_pred)
 model_filename = 'saved_model.pkl'
 
+import os
+print("Current working directory:", os.getcwd())
+
+
 # Save the model directly to the current directory
 joblib.dump(model, model_filename)
 
