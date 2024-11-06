@@ -1,26 +1,27 @@
-# scripts/test.py
-
-import mlflow
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
 import joblib
+import numpy as np
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris  # Example dataset
 
-# Load dataset
-data = pd.read_csv('data/iris.csv')
-X_test = data.drop('species', axis=1)
-y_test = data['species']
+# Load the trained model (Assuming it's saved as 'saved_model.pkl')
+model = joblib.load('saved_model.pkl')
 
-# Load model
-model = joblib.load("model.joblib")
+# Example: Using Iris dataset for testing (you can replace it with your own dataset)
+data = load_iris()
+X = data.data
+y = data.target
 
-# Test model
+# Split data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Make predictions
 y_pred = model.predict(X_test)
-test_accuracy = accuracy_score(y_test, y_pred)
 
-# Log test accuracy to MLflow
-mlflow.set_tracking_uri("http://your-mlflow-server.com")  # Change to your MLflow URI
-mlflow.start_run()
-mlflow.log_metric("test_accuracy", test_accuracy)
-mlflow.end_run()
-print("Testing complete. Test Accuracy:", test_accuracy)
+# Evaluate the model
+accuracy = accuracy_score(y_test, y_pred)
+report = classification_report(y_test, y_pred)
+
+# Print the results
+print(f"Accuracy: {accuracy * 100:.2f}%")
+print(f"Classification Report:\n{report}")
