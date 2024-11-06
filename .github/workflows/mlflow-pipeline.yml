@@ -38,4 +38,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: mlflow-logs
-        path: /tmp/mlruns  # Remove the extra hyphens here
+        path: /tmp/mlruns   # Ensure this path is correct
