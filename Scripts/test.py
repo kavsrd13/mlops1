@@ -4,6 +4,10 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris  # Example dataset
 
+
+import os
+print("Current working directory:", os.getcwd())
+
 # Load the trained model (Assuming it's saved as 'saved_model.pkl')
 model = joblib.load('saved_model.pkl')
 
