@@ -21,6 +21,12 @@ model.fit(X_train, y_train)
 # Validation
 y_pred = model.predict(X_val)
 accuracy = accuracy_score(y_val, y_pred)
+model_filename = 'saved_model.pkl'
 
+# Ensure the model is saved in the correct directory
+model_path = os.path.join(os.getcwd(), model_filename)  # Saves in the current directory
+
+# Save the model
+joblib.dump(model, model_path)
 
 print("Training complete. Accuracy:", accuracy)
