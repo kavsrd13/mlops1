@@ -37,7 +37,7 @@ jobs:
         python -c 'import joblib; model = joblib.load("your_model.pkl"); joblib.dump(model, "saved_model.pkl")'
 
     - name: Upload trained model (Optional)
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: trained-model
         path: saved_model.pkl
