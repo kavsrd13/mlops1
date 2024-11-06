@@ -28,10 +28,16 @@ jobs:
 
     - name: Train the model and log metrics
       env:
-        MLFLOW_TRACKING_URI: http://your-mlflow-server.com  # Replace with your MLflow server URL
+        MLFLOW_TRACKING_URI: file:///tmp/mlruns  # Log metrics locally in runner's filesystem
       run: python Scripts/train.py
 
     - name: Test the model and log test metrics
       env:
-        MLFLOW_TRACKING_URI: http://your-mlflow-server.com  # Replace with your MLflow server URL
+        MLFLOW_TRACKING_URI: file:///tmp/mlruns  # Log metrics locally in runner's filesystem
       run: python Scripts/test.py
+
+    - name: Upload MLflow Logs as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: mlflow-logs
+        path: /tmp/mlruns
