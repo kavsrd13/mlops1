@@ -1,5 +1,3 @@
-# .github/workflows/mlflow-pipeline.yml
-
 name: MLflow Model Training and Logging
 
 on:
@@ -40,4 +38,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: mlflow-logs
-        path: /tmp/mlruns
+        path: /tmp/mlruns  # Remove the extra hyphens here
